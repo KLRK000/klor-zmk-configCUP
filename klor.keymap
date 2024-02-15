@@ -1,0 +1,140 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+
+#define BASE   0
+#define LOWER  2 // nav 
+#define RAISE  3 // sym
+#define ADJUST 5 
+
+&lt { quick-tap-ms = <200>; };
+
+// DO NOT MAKE LAYER LABELS LARGER
+
+/ {
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <170>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    // combos {
+    //     compatible = "zmk,combos";
+
+    //     combo_esc {
+    //         timeout-ms = <50>;
+    //         key-positions = <0 1>;
+    //         bindings = <&kp ESC>;
+    //     };
+    // };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+        colemak {
+// ┌───────────────────────────────────────────────────────────┐
+display-name = "COLEMAK"                                       ;
+// └───────────────────────────────────────────────────────────┘
+/*           ┌─────────┬─────────┬─────────┬─────────┬─────────┐                               ┌─────────┬─────────┬─────────┬─────────┬─────────┐
+             │    Q    │    W    │    F    │    P    │    G    │                               │    J    │    L    │    U    │    Y    │    ;    │   
+   ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤                               ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
+   │   TAB   │    A    │    R    │    S    │    T    │    D    │                               │    H    │    N    │    E    │    I    │    O    │    "    │
+   ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮           ╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
+   │  CAP L  │    Z    │    X    │    C    │    V    │    B    ││  MUTE  │           │PLY/PSE ││    K    │    M    │    ,    │    .    │    /    │    \    │
+   └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┼╰────────╯           ╰────────╯┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
+                                 │  CTRL   │  LOWER  │  TAB/2  │   ALT   │           │ CMD/WIN │  SPC/3  │  ENTER  │  BSPCE  │  
+                                 └─────────┴─────────┴─────────┴─────────┘           └─────────┴─────────┴─────────┴─────────┘ */ 
+            bindings = <
+              &kp Q       &kp W        &kp F       &kp P         &kp G                                 &kp J        &kp L          &kp U        &kp Y        &kp BACKSPACE
+&kp ESC       &hm LALT A  &hm LCTRL R  &hm LGUI S  &hm LSHIFT T  &kp D                                 &kp H        &hm LSHIFT N   &hm LGUI E   &hm LCTRL I  &hm LALT O  &kp DEL
+&kp CAPSLOCK  &kp Z       &kp X        &kp C       &kp V         &kp B      &kp C_MUTE       &kp C_PP  &kp K        &kp M          &kp COMMA    &kp DOT      &kp FSLH    &kp BSLH
+                                       &kp LCTRL   &lt 4 SPACE   &lt 2 TAB  &kp LALT         &kp LGUI  &lt 3 SPACE  &kp ENTER      &kp BACKSPACE
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_BRI_UP C_BRI_DN>;
+        };
+
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+        qwerty {
+            // display-name = "QWERTY";
+            bindings = <
+        &kp Q           &kp W               &kp E       &kp R        &kp T                  &kp Y   &kp U             &kp I        &kp O        &kp P
+&trans  &hm LEFT_ALT A  &hm LEFT_CONTROL S  &hm LGUI D  &hm LSHFT F  &kp G                  &kp H   &hm LEFT_SHIFT J  &hm LGUI K   &hm LCTRL L  &hm LALT SEMICOLON  &trans
+&trans  &kp Z           &kp X               &kp C       &kp V        &kp B  &tog 5  &tog 1  &kp N   &kp M             &kp COMMA    &kp DOT      &kp SLASH           &trans
+                                            &lt 4 TAB   &lt 2 SPACE  &mo 7  &trans  &trans  &trans  &kp BACKSPACE     &lt 3 ENTER
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_BRI_UP C_BRI_DN>;
+        };
+
+        nav {
+            // display-name = "NAV";
+            bindings = <
+        &trans      &trans      &kp LS(LBRC)  &kp LS(LPAR)  &kp EQUAL                  &trans   &kp LS(LBRC)  &kp LS(RBRC)  &kp LS(LPAR)  &kp LS(RPAR)
+&trans  &kp LEFT    &kp UP      &kp DOWN      &kp RIGHT     &trans                     &trans   &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &trans
+&trans  &kp LS(GT)  &kp LS(LT)  &kp LBKT      &kp RBKT      &trans     &trans  &trans  &trans   &kp LBKT      &kp RBKT      &kp LS(GT)    &kp LS(LT)    &trans
+                                &trans        &trans        &trans     &trans  &trans  &trans   &trans        &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        sym {
+            // display-name = "SYM";
+            bindings = <
+        &kp COLON      &kp LS(HASH)   &kp LS(STAR)   &kp LS(AMPS)  &kp LS(AMPS)                  &trans     &trans     &trans  &trans  &trans
+&trans  &kp LS(DQT)    &kp LS(CARET)  &kp LS(PRCNT)  &kp LS(DLLR)  &kp LS(PLUS)                  &kp MINUS  &kp UNDER  &trans  &trans  &trans  &trans
+&trans  &kp LS(TILDE)  &kp LS(POUND)  &kp LS(AT)     &kp LS(EXCL)  &kp LS(PIPE)  &trans  &trans  &trans     &trans     &trans  &trans  &trans  &trans
+                                      &trans         &trans        &trans        &trans  &trans  &trans     &trans     &trans
+            >;
+        };
+
+        num {
+            // label = "NUM";
+            // display-name = "NUM";
+            bindings = <
+        &trans  &trans  &trans  &trans      &trans                  &trans  &kp N7  &kp N8  &kp N9  &trans
+&trans  &trans  &trans  &trans  &kp LSHIFT  &trans                  &trans  &kp N4  &kp N5  &kp N6  &trans  &trans
+&trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &kp N0  &kp N1  &kp N2  &kp N3  &trans  &trans
+                        &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        game_layer {
+            bindings = <
+          &kp GRAVE  &kp N1  &kp N2  &kp N3     &kp N4                     &trans  &trans  &trans  &trans  &trans
+&kp TAB   &kp TAB    &kp Q   &kp W   &kp E      &kp R                      &trans  &trans  &trans  &trans  &trans  &trans
+&kp LALT  &kp LSHFT  &kp A   &kp S   &kp D      &kp F      &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                             &kp C   &kp SPACE  &kp LCTRL  &kp V   &trans  &trans  &trans  &trans
+            >;
+        };
+
+        adjust_layer {
+            bindings = <
+        &kp F1  &kp F2   &kp F3   &kp F4   &bt BT_SEL 0                           &bt BT_SEL 2  &trans      &trans  &trans  &trans
+&trans  &kp F5  &kp F6   &kp F7   &kp F8   &bt BT_SEL 1                           &bt BT_SEL 3  &trans      &trans  &trans  &trans  &trans
+&trans  &kp F9  &kp F10  &kp F11  &kp F12  &bt BT_CLR    &sys_reset  &bootloader  &bt BT_PRV    &bt BT_NXT  &trans  &trans  &trans  &trans
+                         &trans   &trans   &trans        &trans      &trans       &trans        &trans      &trans
+            >;
+
+            // sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        tri_layer {
+            if-layers = <2 3>;
+            then-layer = <6>;
+        };
+    };
+};
