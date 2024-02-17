@@ -5,6 +5,8 @@ if(CONFIG_ZMK_DISPLAY)
 
   if(NOT CONFIG_ZMK_SPLIT OR CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
     zephyr_library_sources(widgets/cat.c)
+    zephyr_library_sources(widgets/layer_status.c)
+    zephyr_library_sources(widgets/bongo_cat.c)
     zephyr_library_sources(widgets/status.c)
   else()
     zephyr_library_sources(widgets/batman_logo.c)

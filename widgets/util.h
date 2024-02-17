@@ -10,11 +10,7 @@ struct status_state {
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
     struct zmk_endpoint_instance selected_endpoint;
     bool active_profile_connected;
-    uint8_t layer_index;
-    const char *layer_label;
     bool active_profile_bonded;
-    uint8_t wpm;
-    lv_anim_t anim;
 #else
     bool connected;
 #endif

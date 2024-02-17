@@ -25,6 +25,9 @@ choice ZMK_DISPLAY_STATUS_SCREEN
     default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
 endchoice
 
+config SYSTEM_WORKQUEUE_STACK_SIZE
+    default 2048
+
 if !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
 
 config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
@@ -43,7 +46,7 @@ endif # ZMK_DISPLAY
 if LVGL
 
     config LV_Z_VDB_SIZE
-        default 100
+        default 30
 
     config LV_DPI_DEF
         default 155
